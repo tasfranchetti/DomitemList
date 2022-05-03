@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Item list created with DOM</title>
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        .tamanoImg {
+            width: 200px;
+            height: 150px;
+            margin: 0px 20px 0px 0px;
+        }
+        .cssContainer {
+            display: flex;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h2>Lista de productos</h2>
+        <div id="displayProductos" class="cssContainer"></div>
+    </div>
+
+    <script>
+        //Setting up the workspace
+        const displayProductos = document.querySelector("#displayProductos");
+        console.log(displayProductos);
+
+        //Product list
+        const listaProductos = [ 
+            {stock:3, img:"https://images.unsplash.com/photo-1509785307050-d4066910ec1e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1328&q=80", nombre:"Café", descripcion:"Lorem ipsum", precio:"$800"},
+            {stock:2, img:"https://images.unsplash.com/photo-1634612831148-03a8550e1d52?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1932&q=80", nombre:"Azúcar", descripcion:"Lorem ipsum", precio:"$200"},
+            {stock:1, img:"https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", nombre:"Té", descripcion:"Lorem ipsum", precio:"$700"},
+            {stock:2, img:"https://images.unsplash.com/photo-1523642456391-c597480dbdb6?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80", nombre:"Yerba", descripcion:"Lorem ipsum", precio:"$750"}
+        ]
+
+        //Going through the array
+        for(let item of listaProductos){
+            //creating the elements
+            let producto = document.createElement("div");
+            let nombre = document.createElement("h4");
+            let precio = document.createElement("p");
+            let imagen = document.createElement("img");
+            let descripcion = document.createElement("p");
+            let botonCompra = document.createElement("button");
+            
+            //Setting text
+            nombre.innerText = item.nombre;
+            precio.innerText = item.precio;
+            descripcion.innerText = item.descripcion;
+            botonCompra.innerText = "Comprar";
+
+            //Setting attributes
+            botonCompra.setAttribute("onclick", "comprarProducto()")
+            imagen.setAttribute("src", item.img);
+            
+            //Image size setup
+            imagen.className = "tamanoImg";
+
+            //Push to HTML
+            displayProductos.appendChild(producto);
+            producto.appendChild(nombre);
+            producto.appendChild(imagen);
+            producto.appendChild(descripcion);
+            producto.appendChild(precio);
+            producto.appendChild(botonCompra);
+
+            //Stock check
+            if (item.stock <= 0){
+                producto.removeChild(nombre, precio, imagen, descripcion, botonCompra);
+            } else {
+                //console.log(item.stock)
+            }
+
+            //Purchase function
+            function comprarProducto() {
+            item.stock -= 1;
+            }
+        }
+    </script>
+</body>
+
+</html>
