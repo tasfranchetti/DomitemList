@@ -12,9 +12,8 @@
 
 /*Propiedades geenrales*/
 body {
-    height: 100vh;
-    background-repeat:round;
-    background-size: cover;
+    min-height: 100%;
+    background-color: #ffffff;
 }
 
 h2{
@@ -58,11 +57,6 @@ button:hover {
     display: flex;
     flex-wrap: wrap; 
 }
-
-#productDisplayCart {
-    display: flex; 
-    flex-wrap: wrap;
-}
 .productBox{
     display: flex;
     flex-direction: column;
@@ -71,4 +65,26 @@ button:hover {
     margin: 10px;
     background-color: white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#addProduct {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+input{
+    margin: auto;
+    padding: 3px;
+    width: 500px;
+    border-width: 1px;
+    border-radius: 5px;
+    border-color: cadetblue;
 }
